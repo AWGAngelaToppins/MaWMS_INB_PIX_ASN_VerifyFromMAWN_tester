@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="item">
+    <xsd:complexType>
+      <xsd:attribute name="rcvqty" type="xsd:string"/>
+      <xsd:attribute name="seqNbr" type="xsd:string"/>
+      <xsd:attribute name="prtnum" type="xsd:string"/>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="root">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="header"/>
+        <xsd:element ref="items"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="header">
+    <xsd:complexType>
+      <xsd:attribute name="invnum" type="xsd:string"/>
+      <xsd:attribute name="fclty" type="xsd:string"/>
+      <xsd:attribute name="supnum" type="xsd:string"/>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="items">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element maxOccurs="unbounded" ref="item"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

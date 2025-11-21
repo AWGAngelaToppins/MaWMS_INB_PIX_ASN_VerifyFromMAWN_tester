@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="default" version="8.0.5.0" xmlns:map="default">
+    <input path="jar:file://!com/ibm/etools/mft/map/xsds/predefined/JsonDomainMsg.xsd" var="var2"/>
+    <input derivedFrom="MB:JSON_schema_in_json_file" path="/RHC_RLC_message.schema.json" var="var"/>
+    <input derivedFrom="MB:JSON_schema_in_json_file" path="/poLines.schema.json" var="var4"/>
+    <input derivedFrom="MB:JSON_schema_in_json_file" path="/poQty.schema.json" var="var5"/>
+    <input derivedFrom="MB:JSON_schema_in_json_file" path="/poCatchWgt.schema.json" var="var6"/>
+    <input derivedFrom="MB:JSON_schema_in_json_file" path="/poUom.schema.json" var="var7"/>
+    <output path="jar:file://!com/ibm/etools/mft/map/xsds/predefined/JsonDomainMsg.xsd" var="var3"/>
+    <output derivedFrom="MB:JSON_schema_in_json_file" path="/RHC_RLC_message.schema.json" var="var1"/>
+    <imports>
+        <import kind="java" location="Convert" namespace="xalan://Convert"/>
+    </imports>
+    <namespaces>
+        <namespace kind="supplement" prefix="io" uri="http://www.ibm.com/iib/msl/json"/>
+        <namespace kind="extension" prefix="Convert" uri="xalan://Convert"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="ASN_VerifyFromWaWMS_createRhcRlcMsg">
+        <input namespace="http://www.ibm.com/iib/msl/json" path="$var2/mb:msg(JSON,assembly,JSON,LocalEnvironment,Properties,MQMD)" var="MessageAssembly">
+            <cast derivedFrom="MB:JSON_TYPE" path="$MessageAssembly/JSON/Data/type('anyType')" qualifier="{http://www.ibm.com/iib/msl/json}RHC_RLC_message.schema_JsonType" ref="var"/>
+            <cast derivedFrom="MB:JSON_schema_in_json_file" path="$MessageAssembly/LocalEnvironment/Variables/any" qualifier="{http://www.ibm.com/iib/msl/json}RHC_RLC_message.schema" ref="var"/>
+            <cast derivedFrom="MB:JSON_schema_in_json_file" path="$MessageAssembly/LocalEnvironment/Variables/any" qualifier="{http://www.ibm.com/iib/msl/json}poLines.schema" ref="var4"/>
+            <cast derivedFrom="MB:JSON_schema_in_json_file" path="$MessageAssembly/LocalEnvironment/Variables/any" qualifier="{http://www.ibm.com/iib/msl/json}poQty.schema" ref="var5"/>
+            <cast derivedFrom="MB:JSON_schema_in_json_file" path="$MessageAssembly/LocalEnvironment/Variables/any" qualifier="{http://www.ibm.com/iib/msl/json}poCatchWgt.schema" ref="var6"/>
+            <cast derivedFrom="MB:JSON_schema_in_json_file" path="$MessageAssembly/LocalEnvironment/Variables/any" qualifier="{http://www.ibm.com/iib/msl/json}poUom.schema" ref="var7"/>
+        </input>
+        <output namespace="http://www.ibm.com/iib/msl/json" path="$var3/mb:msg(JSON,assembly,JSON,Properties,MQMD)" var="MessageAssembly1">
+            <cast derivedFrom="MB:JSON_TYPE" path="$MessageAssembly1/JSON/Data/type('anyType')" qualifier="{http://www.ibm.com/iib/msl/json}RHC_RLC_message.schema_JsonType" ref="var1"/>
+        </output>
+        <move>
+            <input path="$MessageAssembly/Properties"/>
+            <output path="$MessageAssembly1/Properties"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/MQMD"/>
+            <output path="$MessageAssembly1/MQMD"/>
+        </move>
+        <foreach>
+            <input path="$MessageAssembly/JSON/spath('Data',2)/RHC/RLC/Item" var="Item"/>
+            <input auxiliary="true" path="$MessageAssembly/LocalEnvironment/Variables/poLines.schema/poLines/Item" var="Item1"/>
+            <input auxiliary="true" path="$MessageAssembly/LocalEnvironment/Variables/poQty.schema/poQty/Item" var="Item2"/>
+            <input auxiliary="true" path="$MessageAssembly/LocalEnvironment/Variables/poCatchWgt.schema" var="poCatchWgtschema"/>
+            <input auxiliary="true" path="$MessageAssembly/LocalEnvironment/Variables/poUom.schema" var="poUomschema"/>
+            <output path="$MessageAssembly1/JSON/spath('Data',2)/RHC/RLC/Item"/>
+            <customFunction lang="java" ref="Convert:getValue">
+                <input path="$Item/QtyHost" var="QtyHost3"/>
+                <input path="$Item1/." var="Item3"/>
+                <input path="$Item/PoLineIdent" var="PoLineIdent1"/>
+                <input path="$Item2/." var="Item4"/>
+                <output path="QtyHost"/>
+                <param name="manhattanPoLines" value="$Item3"/>
+                <param name="poLineSeq" value="$PoLineIdent1"/>
+                <param name="poValue" value="$QtyHost3"/>
+                <param name="manhattanValue" value="'testing MaMWS data'"/>
+                <param name="xref" value="$Item4"/>
+            </customFunction>
+            <customFunction lang="java" ref="Convert:getValue">
+                <input path="$poCatchWgtschema/poCatchWgt/Item" var="Item5"/>
+                <input path="$Item1/." var="Item6"/>
+                <input path="$Item/PoLineIdent" var="PoLineIdent"/>
+                <input path="$Item/zzTotalCatchWeight" var="zzTotalCatchWeight"/>
+                <output path="zzTotalCatchWeight"/>
+                <param name="manhattanPoLines" value="$Item6"/>
+                <param name="poLineSeq" value="$PoLineIdent"/>
+                <param name="poValue" value="$zzTotalCatchWeight"/>
+                <param name="manhattanValue" value="'test'"/>
+                <param name="xref" value="$Item5"/>
+            </customFunction>
+            <customFunction lang="java" ref="Convert:getValue">
+                <input path="$Item/UM" var="UM"/>
+                <input path="$poUomschema/poUom/Item" var="Item7"/>
+                <input path="$Item/PoLineIdent" var="PoLineIdent2"/>
+                <input path="$Item1/." var="Item8"/>
+                <output path="UM"/>
+                <param name="manhattanPoLines" value="$Item8"/>
+                <param name="poLineSeq" value="$PoLineIdent2"/>
+                <param name="poValue" value="$UM"/>
+                <param name="manhattanValue" value="'test'"/>
+                <param name="xref" value="$Item7"/>
+            </customFunction>
+            <move>
+                <input path="$Item/Owner"/>
+                <output path="Owner"/>
+            </move>
+            <move>
+                <input path="$Item/PoIdent"/>
+                <output path="PoIdent"/>
+            </move>
+            <move>
+                <input path="$Item/PoLineIdent"/>
+                <output path="PoLineIdent"/>
+            </move>
+            <move>
+                <input path="$Item/ProdIdent"/>
+                <output path="ProdIdent"/>
+            </move>
+            <move>
+                <input path="$Item/Orderkey"/>
+                <output path="Orderkey"/>
+            </move>
+            <move>
+                <input path="$Item/Qstate"/>
+                <output path="Qstate"/>
+            </move>
+            <move>
+                <input path="$Item/BatchNo"/>
+                <output path="BatchNo"/>
+            </move>
+        </foreach>
+        <move>
+            <input path="$MessageAssembly/JSON/spath('Data',2)/RHC/Owner"/>
+            <output path="$MessageAssembly1/JSON/spath('Data',2)/RHC/Owner"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/JSON/spath('Data',2)/RHC/PoIdent"/>
+            <output path="$MessageAssembly1/JSON/spath('Data',2)/RHC/PoIdent"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/JSON/spath('Data',2)/RHC/DeliveryDate"/>
+            <output path="$MessageAssembly1/JSON/spath('Data',2)/RHC/DeliveryDate"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/JSON/spath('Data',2)/header"/>
+            <output path="$MessageAssembly1/JSON/spath('Data',2)/header"/>
+        </move>
+    </mappingDeclaration>
+</mappingRoot>

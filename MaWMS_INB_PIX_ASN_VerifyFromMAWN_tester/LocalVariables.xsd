@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="dupRec" type="xsd:string"/>
+  <xsd:element name="asnID" type="xsd:string"/>
+  <xsd:element name="asnIdFclty" type="xsd:string"/>
+  <xsd:element name="asnIdWhse" type="xsd:string"/>
+  <xsd:element name="asnIdPoNbr" type="xsd:string"/>
+  <xsd:element name="anyPoLines" type="xsd:string" />
+  
+  <xsd:element name="LocalVariables">
+    <xsd:complexType>
+      <xsd:sequence>
+      	<xsd:element ref="dupRec" />
+      	<xsd:element ref="asnID" />
+      	<xsd:element ref="asnIdFclty" />
+      	<xsd:element ref="asnIdWhse" />
+      	<xsd:element ref="asnIdPoNbr" />
+      	<xsd:element ref="anyPoLines" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

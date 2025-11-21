@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--xtools2_universal_type_manager-->
+<xmi:XMI xmlns:datamodelversion="http://www.ibm.com/com.ibm.datatools.core/model/data/1.9.0.0" xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:DB2Model="http:///com/ibm/db/models/db2/db2.ecore" xmlns:LUW="http:///com/ibm/db/models/db2/luw.ecore" xmlns:SQLDataTypes="http:///org/eclipse/datatools/modelbase/sql/datatypes.ecore" xmlns:SQLExpressions="http:///org/eclipse/datatools/modelbase/sql/expressions.ecore">
+  <LUW:LUWDatabase xmi:id="_M0LJANbxEeycPerEZoakdA" name="scm" vendor="DB2 UDB" version="V9.7" schemas="_M4QXwNbxEeycPerEZoakdA _tWSJUNbxEeycPerEZoakdA"/>
+  <DB2Model:DB2Schema xmi:id="_M4QXwNbxEeycPerEZoakdA" name="Schema" database="_M0LJANbxEeycPerEZoakdA"/>
+  <DB2Model:DB2Schema xmi:id="_tWSJUNbxEeycPerEZoakdA" name="DB2PDBA" tables="_n71qoLT6EfCgWfKaaa2s7Q _-EnfoLT6EfCgWfKaaa2s7Q _LrurULh5EfC765MhMJxVdQ _UeOkwLnDEfCFsYO4epekGQ" database="_M0LJANbxEeycPerEZoakdA"/>
+  <LUW:LUWTable xmi:id="_n71qoLT6EfCgWfKaaa2s7Q" name="MAWMS_MSG_ARCH" schema="_tWSJUNbxEeycPerEZoakdA">
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_FqM4ELWXEfCgWfKaaa2s7Q" name="MSG_HEADER_KEY" nullable="false">
+      <containedType xsi:type="SQLDataTypes:IntegerDataType" xmi:id="_FqM4EbWXEfCgWfKaaa2s7Q" name="BIGINT" primitiveType="BIGINT"/>
+      <identitySpecifier xsi:type="DB2Model:DB2IdentitySpecifier" xmi:id="_FqM4ErWXEfCgWfKaaa2s7Q" startValue="1" increment="1" minimum="1" maximum="9223372036854775807"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_5lYUMLT6EfCgWfKaaa2s7Q" name="GOOGLE_MSG_ID_PK" description="Unique key from Manhattan and Google Pub Sub used to determine if message is a duplicate. ">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_5lYUMbT6EfCgWfKaaa2s7Q" name="CHAR" length="40"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_5lwHoLT6EfCgWfKaaa2s7Q" name="GOOGLE_MSG_ID" description="Google message id unique to each message " nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_5lwHobT6EfCgWfKaaa2s7Q" name="CHAR" length="25"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_5l21ULT6EfCgWfKaaa2s7Q" name="MSG_TOPIC" description="Name of Topic related to this message" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_5l21UbT6EfCgWfKaaa2s7Q" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="100"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_5l-xILT6EfCgWfKaaa2s7Q" name="KEY_STRING" description="Key for each topic to help identify records ">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_5l-xIbT6EfCgWfKaaa2s7Q" name="CHAR" length="75"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_5mGs8LT6EfCgWfKaaa2s7Q" name="MSG_DIRECTION" description="value for whether this is an INBOUND or OUTBOUND message " nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_5mGs8bT6EfCgWfKaaa2s7Q" name="CHAR" length="10"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_5mNaoLT6EfCgWfKaaa2s7Q" name="MSG_AWG_QUEUE" description="Name of output AWG queue for destination system" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_5mNaobT6EfCgWfKaaa2s7Q" name="CHAR" length="50"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_5mVWcLT6EfCgWfKaaa2s7Q" name="ACKID" description="This is the acknowledgment ID from the inbound google pub sub ">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_5mVWcbT6EfCgWfKaaa2s7Q" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="250"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_5md5ULT6EfCgWfKaaa2s7Q" name="DUPLICATES_RECIEVED">
+      <containedType xsi:type="SQLDataTypes:IntegerDataType" xmi:id="_5md5UbT6EfCgWfKaaa2s7Q" name="INTEGER" primitiveType="INTEGER"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_5mmcMLT6EfCgWfKaaa2s7Q" name="MSG_DATA" description="base64 encoded string of the Data to be sent/retrieved from google Pub Sub" nullable="false" inlineLength="196">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_5mmcMbT6EfCgWfKaaa2s7Q" name="CLOB" primitiveType="CHARACTER_LARGE_OBJECT" length="4194304"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_5mtw8LT6EfCgWfKaaa2s7Q" name="MAWMS_JOB_ID" description="Unique id for the an individual message decoded from the MSG_DATA">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_5mtw8bT6EfCgWfKaaa2s7Q" name="CHAR" length="40"/>
+    </columns>
+  </LUW:LUWTable>
+  <LUW:LUWTable xmi:id="_-EnfoLT6EfCgWfKaaa2s7Q" name="MAWMS_MSG_DTL_ARCH" schema="_tWSJUNbxEeycPerEZoakdA">
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_Vh30QLT7EfCgWfKaaa2s7Q" name="DTL_TRAN_ID" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_Vh30QbT7EfCgWfKaaa2s7Q" name="CHAR" length="80"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_VidqILT7EfCgWfKaaa2s7Q" name="MSG_HEADER_KEY" nullable="false">
+      <containedType xsi:type="SQLDataTypes:IntegerDataType" xmi:id="_VidqIbT7EfCgWfKaaa2s7Q" name="BIGINT" primitiveType="BIGINT"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_ViuI0LT7EfCgWfKaaa2s7Q" name="MESSAGE_DATA" nullable="false" inlineLength="196">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_ViuI0bT7EfCgWfKaaa2s7Q" name="CLOB" primitiveType="CHARACTER_LARGE_OBJECT" length="4194304"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_Vi_1oLT7EfCgWfKaaa2s7Q" name="INSERT_TIMESTAMP" nullable="false">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_Vi_1obT7EfCgWfKaaa2s7Q" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="6"/>
+    </columns>
+  </LUW:LUWTable>
+  <LUW:LUWView xmi:id="_LrurULh5EfC765MhMJxVdQ" name="SCPV_POL" schema="_tWSJUNbxEeycPerEZoakdA" checkType="NONE">
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_qSjDoLh5EfC765MhMJxVdQ" name="POL_CPY_CD" nullable="false" defaultValue="SYSTEM_DEFAULT">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_qSjDobh5EfC765MhMJxVdQ" name="CHAR" length="5"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_rdDu8Lh5EfC765MhMJxVdQ" name="POL_PO_FACL" nullable="false" defaultValue="SYSTEM_DEFAULT">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_rdDu8bh5EfC765MhMJxVdQ" name="CHAR" length="2"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_rdOHALh5EfC765MhMJxVdQ" name="POL_PO_WHSE" nullable="false" defaultValue="SYSTEM_DEFAULT">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_rdOHAbh5EfC765MhMJxVdQ" name="CHAR" length="2"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_rdOHArh5EfC765MhMJxVdQ" name="POL_PONO" nullable="false" defaultValue="SYSTEM_DEFAULT">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_rdOHA7h5EfC765MhMJxVdQ" name="CHAR" length="5"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_xDBR4Lh5EfC765MhMJxVdQ" name="POL_POLN" nullable="false" defaultValue="SYSTEM_DEFAULT">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_xDBR4bh5EfC765MhMJxVdQ" name="CHAR" length="3"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_zcgRwLh5EfC765MhMJxVdQ" name="POL_ITEM" nullable="false" defaultValue="SYSTEM_DEFAULT">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_zcgRwbh5EfC765MhMJxVdQ" name="CHAR" length="7"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_KgRjULnCEfCFsYO4epekGQ" name="POL_RCDT">
+      <containedType xsi:type="SQLDataTypes:DateDataType" xmi:id="_KgRjUbnCEfCFsYO4epekGQ" name="DATE" primitiveType="DATE"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_-djkYLh5EfC765MhMJxVdQ" name="POL_POQT" nullable="false" defaultValue="SYSTEM_DEFAULT">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-djkYbh5EfC765MhMJxVdQ" name="DECIMAL" primitiveType="DECIMAL" precision="5"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="__sPlELh5EfC765MhMJxVdQ" name="POL_ORIG_QTY" nullable="false" defaultValue="SYSTEM_DEFAULT">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="__sPlEbh5EfC765MhMJxVdQ" name="DECIMAL" primitiveType="DECIMAL" precision="5"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_52B_oLh5EfC765MhMJxVdQ" name="POL_RECQ" nullable="false" defaultValue="SYSTEM_DEFAULT">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_52B_obh5EfC765MhMJxVdQ" name="DECIMAL" primitiveType="DECIMAL" precision="5"/>
+    </columns>
+    <queryExpression xsi:type="SQLExpressions:QueryExpressionDefault" xmi:id="_LrurUbh5EfC765MhMJxVdQ" SQL=""/>
+  </LUW:LUWView>
+  <LUW:LUWView xmi:id="_UeOkwLnDEfCFsYO4epekGQ" name="SCPV_POH" schema="_tWSJUNbxEeycPerEZoakdA" checkType="NONE">
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_tGhwMLnDEfCFsYO4epekGQ" name="POH_CPY_CD" nullable="false" defaultValue="SYSTEM_DEFAULT">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_tGhwMbnDEfCFsYO4epekGQ" name="CHAR" length="5"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_tG5joLnDEfCFsYO4epekGQ" name="POH_PO_FACL" nullable="false" defaultValue="SYSTEM_DEFAULT">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_tG5jobnDEfCFsYO4epekGQ" name="CHAR" length="2"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_tHEiwLnDEfCFsYO4epekGQ" name="POH_PO_WHSE" nullable="false" defaultValue="SYSTEM_DEFAULT">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_tHEiwbnDEfCFsYO4epekGQ" name="CHAR" length="2"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_tHO60LnDEfCFsYO4epekGQ" name="POH_PONO" nullable="false" defaultValue="SYSTEM_DEFAULT">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_tHO60bnDEfCFsYO4epekGQ" name="CHAR" length="5"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_ztePALnDEfCFsYO4epekGQ" name="POH_PODT">
+      <containedType xsi:type="SQLDataTypes:DateDataType" xmi:id="_ztePAbnDEfCFsYO4epekGQ" name="DATE" primitiveType="DATE"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_z-jX8LnDEfCFsYO4epekGQ" name="POH_RCDT">
+      <containedType xsi:type="SQLDataTypes:DateDataType" xmi:id="_z-jX8bnDEfCFsYO4epekGQ" name="DATE" primitiveType="DATE"/>
+    </columns>
+    <columns xsi:type="LUW:LUWColumn" xmi:id="_1DBFoLnDEfCFsYO4epekGQ" name="POH_ARDT">
+      <containedType xsi:type="SQLDataTypes:DateDataType" xmi:id="_1DBFobnDEfCFsYO4epekGQ" name="DATE" primitiveType="DATE"/>
+    </columns>
+    <queryExpression xsi:type="SQLExpressions:QueryExpressionDefault" xmi:id="_UeOkwbnDEfCFsYO4epekGQ" SQL=""/>
+  </LUW:LUWView>
+</xmi:XMI>

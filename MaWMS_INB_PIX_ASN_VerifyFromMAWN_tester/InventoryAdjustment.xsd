@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+      elementFormDefault="qualified" xmlns="adjustment" targetNamespace="adjustment">
+  <xsd:element name="ADJ_SEG">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="TRANID"/>
+        <xsd:element ref="SITCOD"/>
+        <xsd:element ref="TRNNUM"/>
+        <xsd:element ref="PRTNUM"/>
+        <xsd:element ref="PRT_CLIENT_ID"/>
+        <xsd:element ref="ORGCOD"/>
+        <xsd:element ref="REVLVL"/>
+        <xsd:element ref="LOTNUM"/>
+        <xsd:element ref="ADJQTY"/>
+        <xsd:element ref="REACOD"/>
+        <xsd:element ref="STKUOM"/>
+        <xsd:element ref="CATCH_UNTTYP"/>
+        <xsd:element ref="CATCH_QTY"/>
+        <xsd:element ref="ADJ_REF1"/>
+        <xsd:element ref="ADJ_REF2"/>
+        <xsd:element ref="WH_ID"/>
+        <xsd:element ref="TRNDTE"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="CATCH_UNTTYP" type="xsd:string"/>
+  <xsd:element name="ADJQTY" type="xsd:string"/>
+  <xsd:element name="INVENTORY_ADJUST_IFD">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="ADJ_SEG"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="LOTNUM">
+    <xsd:complexType/>
+  </xsd:element>
+  <xsd:element name="WH_ID" type="xsd:string"/>
+  <xsd:element name="ORGCOD">
+    <xsd:complexType/>
+  </xsd:element>
+  <xsd:element name="TRNNUM" type="xsd:string"/>
+  <xsd:element name="CATCH_QTY" type="xsd:string"/>
+  <xsd:element name="STKUOM" type="xsd:string"/>
+  <xsd:element name="ADJ_REF2" type="xsd:string"/>
+  <xsd:element name="ADJ_REF1" type="xsd:string"/>
+  <xsd:element name="REACOD" type="xsd:string"/>
+  <xsd:element name="SITCOD" type="xsd:string"/>
+  <xsd:element name="PRTNUM" type="xsd:string"/>
+  <xsd:element name="TRNDTE" type="xsd:string"/>
+  <xsd:element name="PRT_CLIENT_ID" type="xsd:string"/>
+  <xsd:element name="REVLVL">
+    <xsd:complexType/>
+  </xsd:element>
+  <xsd:element name="TRANID" type="xsd:string"/>
+</xsd:schema>

@@ -1,0 +1,111 @@
+{
+  "ContextInformation": {
+    "Messages": null,
+    "Organization": "LUF",
+    "UserId": "system-msg-user@LUF",
+    "UserLocale": "UTC",
+    "Location": "LUF"
+  },
+  "CurrentPage": 1,
+  "ExportDocuments": [
+
+
+    {
+      "Messages": null,
+      "PIXSpecification": "LPN_Level",
+      "Description": "LPN Level Variance",
+      "SourceTransactionType": "Receiving",
+      "SourceEventName": "Verify_ASN",
+      "ItemDefinition": {
+        "Company": "LUF",
+        "Season": "",
+        "SeasonYear": "",
+        "Style": "",
+        "StyleSuffix": "",
+        "Color": "",
+        "ColorSuffix": "",
+        "SecondDimension": "",
+        "SizeCode": "",
+        "SizeDescription": "5",
+        "ItemId": "763805",
+        "Description": "LA GUMBO ORIGINAL MIX"
+      },
+      "SubItemFields": {
+        "CountryOfOrigin": "",
+        "InventoryTypeId": "",
+        "ProductStatusId": "",
+        "ItemBatchNumberId": "",
+        "InventoryAttribute1": "",
+        "InventoryAttribute2": "",
+        "InventoryAttribute3": "",
+        "InventoryAttribute4": "",
+        "InventoryAttribute5": "",
+        "ExpirationDate": "",
+        "ManufactureDate": ""
+      },
+      "PIXFields": {
+        "BusinessUnitId": "",
+        "ExternalOrganizationId": "",
+        "RrnId": "",
+        "AsnLevelId": "ITEM",
+        "CreatedBy": "lynch_c",
+        "OriginalOrderId": "",
+        "AsnLineId": "",
+        "PurchaseOrderId": "",
+        "AlternatePurchaseOrderId": "",
+        "PurchaseOrderLineId": "",
+        "LpnDetailId": "ca834e42-1d76-4621-9b7f-12dc6872a9eb",
+        "AsnId": "320105",
+        "AlternateAsnId": "",
+        "AsnStatus": "8000",
+        "AsnOriginTypeId": "P",
+        "IlpnId": "LPN000000004462",
+        "ConditionCodes": [
+          {
+            "ConditionCodes": "[{Actions={}, PK=null, CreatedBy=system-msg-user@System, CreatedTimestamp=2025-04-02T14:48:22.204, UpdatedBy=system-msg-user@System, UpdatedTimestamp=2025-04-02T14:48:22.204, Messages=null, ConditionCodeId=PP, Description=Pending Putaway, InventoryUnavailable=true, HostPriority=null, RemoveOnPutaway=true, RemoveOnCount=false, LocalizedData=[], LocalizedDataKVStore=[], Extended={}}]"
+          }
+        ],
+        "ConditionCodeList": [
+          {
+            "Actions": {},
+            "PK": null,
+            "CreatedBy": "system-msg-user@System",
+            "CreatedTimestamp": "2025-04-02T14:48:22.204",
+            "UpdatedBy": "system-msg-user@System",
+            "UpdatedTimestamp": "2025-04-02T14:48:22.204",
+            "Messages": null,
+            "ConditionCodeId": "PP",
+            "Description": "Pending Putaway",
+            "InventoryUnavailable": true,
+            "HostPriority": null,
+            "RemoveOnPutaway": true,
+            "RemoveOnCount": false,
+            "LocalizedData": [],
+            "LocalizedDataKVStore": [],
+            "Extended": {}
+          }
+        ],
+        "ReceiptVariance": "Y",
+        "ReceiptsCompleted": "Y",
+        "iLPNsShipped": "1",
+        "iLPNsReceived": "1",
+        "UnitsShipped": "0.0",
+        "UnitsReceived": "50.0",
+        "CreatedTimestamp": "2025-10-27T21:17:05.928",
+        "UpdatedTimestamp": "2025-10-27T21:20:00.505",
+        "UpdatedBy": "system-msg-user@LUF",
+        "TransactionDateTime": "2025-10-27T21:17:05.892"
+      },
+      "TransactionNumber": "7615998259277841078111",
+      "SequenceNumber": 1,
+      "TransactionDateTime": "2025-10-27T21:17:05.892",
+      "Organization": "LUF",
+      "Facility": "LUF"
+    }
+
+  
+  
+    ],
+  "UniqueJobId": "aa213f05-2480-4378-9379-91ec0f2dc70e",
+  "TotalPages": 1
+}

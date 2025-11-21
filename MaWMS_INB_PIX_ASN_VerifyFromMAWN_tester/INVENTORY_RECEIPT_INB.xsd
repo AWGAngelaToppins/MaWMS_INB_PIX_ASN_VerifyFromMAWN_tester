@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="CATCH_UNTTYP" type="xsd:string">
+
+  </xsd:element>
+  <xsd:element name="TRKNUM" type="xsd:string">
+
+  </xsd:element>
+  <xsd:element name="INVENTORY_RECEIPT_IFD_SEG">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="SITCOD"/>
+        <xsd:element ref="TRANID"/>
+        <xsd:element ref="TRNNUM"/>
+        <xsd:element ref="PRTNUM"/>
+        <xsd:element ref="PRT_CLIENT_ID"/>
+        <xsd:element ref="ORGCOD"/>
+        <xsd:element ref="REVLVL"/>
+        <xsd:element ref="LOTNUM"/>
+        <xsd:element ref="TRKNUM"/>
+        <xsd:element ref="INVNUM"/>
+        <xsd:element ref="SUPNUM"/>
+        <xsd:element ref="HSTACC"/>
+        <xsd:element ref="RCVQTY"/>
+        <xsd:element ref="RETCOD"/>
+        <xsd:element ref="SUBNUM"/>
+        <xsd:element ref="STKUOM"/>
+        <xsd:element ref="RCVSTS"/>
+        <xsd:element ref="INVLIN"/>
+        <xsd:element ref="INVSLN"/>
+        <xsd:element ref="EXPQTY"/>
+        <xsd:element ref="SADNUM"/>
+        <xsd:element ref="WAYBILL"/>
+        <xsd:element ref="ORGREF"/>
+        <xsd:element ref="INVTYP"/>
+        <xsd:element ref="RIMFLG"/>
+        <xsd:element ref="CATCH_UNTTYP"/>
+        <xsd:element ref="CATCH_QTY"/>
+        <xsd:element ref="WH_ID"/>
+        <xsd:element ref="TRNDTE"/>
+        <xsd:element ref="VC_TOTQTY"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="INVLIN" type="xsd:string"/>
+  <xsd:element name="EXPQTY" type="xsd:string">
+
+  </xsd:element>
+  <xsd:element name="TRNVER" type="xsd:string"/>
+  <xsd:element name="STKUOM" type="xsd:string"/>
+  <xsd:element name="SUPNUM" type="xsd:string"/>
+  <xsd:element name="HSTACC" type="xsd:string">
+
+  </xsd:element>
+  <xsd:element name="SITCOD" type="xsd:string"/>
+  <xsd:element name="TRNNAM" type="xsd:string"/>
+  <xsd:element name="RETCOD" type="xsd:string">
+
+  </xsd:element>
+  <xsd:element name="TRNDTE" type="xsd:string"/>
+  <xsd:element name="ORGREF" type="xsd:string">
+
+  </xsd:element>
+  <xsd:element name="PRT_CLIENT_ID" type="xsd:string"/>
+  <xsd:element name="RIMFLG" type="xsd:string">
+
+  </xsd:element>
+  <xsd:element name="INVSLN" type="xsd:string">
+
+  </xsd:element>
+  <xsd:element name="CTRL_SEG">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="TRNNAM"/>
+        <xsd:element ref="TRNVER"/>
+        <xsd:element maxOccurs="unbounded" ref="INVENTORY_RECEIPT_IFD_SEG"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="LOTNUM" type="xsd:string">
+
+  </xsd:element>
+  <xsd:element name="WH_ID" type="xsd:string"/>
+  <xsd:element name="SADNUM" type="xsd:string">
+
+  </xsd:element>
+  <xsd:element name="ORGCOD" type="xsd:string">
+
+  </xsd:element>
+  <xsd:element name="RCVSTS" type="xsd:string"/>
+  <xsd:element name="TRNNUM" type="xsd:string">
+
+  </xsd:element>
+  <xsd:element name="SUBNUM" type="xsd:string">
+
+  </xsd:element>
+  <xsd:element name="CATCH_QTY" type="xsd:string">
+
+  </xsd:element>
+  <xsd:element name="INVENTORY_RECEIPT_IFD">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="CTRL_SEG"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="INVNUM" type="xsd:string"/>
+  <xsd:element name="RCVQTY" type="xsd:string"/>
+  <xsd:element name="WAYBILL" type="xsd:string">
+
+  </xsd:element>
+  <xsd:element name="PRTNUM" type="xsd:string"/>
+  <xsd:element name="VC_TOTQTY" type="xsd:string">
+
+  </xsd:element>
+  <xsd:element name="REVLVL" type="xsd:string">
+
+  </xsd:element>
+  <xsd:element name="TRANID" type="xsd:string"/>
+  <xsd:element name="INVTYP" type="xsd:string"/>
+</xsd:schema>

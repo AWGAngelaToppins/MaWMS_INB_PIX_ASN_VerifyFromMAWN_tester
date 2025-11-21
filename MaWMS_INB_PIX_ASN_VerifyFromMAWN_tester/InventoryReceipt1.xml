@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:INVENTORY_RECEIPT_IFD xmlns:p="receipt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="receipt InventoryReceipt.xsd ">
+  <p:CTRL_SEG>
+    <p:TRNNAM>INV-RCV</p:TRNNAM>
+    <p:TRNVER>0002</p:TRNVER>
+    <p:INVENTORY_RECEIPT_IFD_SEG>
+      <p:SITCOD>p:SITCOD</p:SITCOD>
+      <p:TRANID>INV-RCV</p:TRANID>
+      <p:TRNNUM>p:TRNNUM</p:TRNNUM>
+      <p:PRTNUM>p:PRTNUM</p:PRTNUM>
+      <p:PRT_CLIENT_ID>----</p:PRT_CLIENT_ID>
+      <p:ORGCOD></p:ORGCOD>
+      <p:REVLVL></p:REVLVL>
+      <p:LOTNUM></p:LOTNUM>
+      <p:TRKNUM></p:TRKNUM>
+      <p:INVNUM>p:INVNUM</p:INVNUM>
+      <p:SUPNUM>p:SUPNUM</p:SUPNUM>
+      <p:HSTACC></p:HSTACC>
+      <p:RCVQTY>p:RCVQTY</p:RCVQTY>
+      <p:RETCOD></p:RETCOD>
+      <p:SUBNUM></p:SUBNUM>
+      <p:STKUOM>p:STKUOM</p:STKUOM>
+      <p:RCVSTS>A</p:RCVSTS>
+      <p:INVLIN>p:INVLIN</p:INVLIN>
+      <p:INVSLN></p:INVSLN>
+      <p:EXPQTY></p:EXPQTY>
+      <p:SADNUM></p:SADNUM>
+      <p:WAYBILL></p:WAYBILL>
+      <p:ORGREF></p:ORGREF>
+      <p:INVTYP>P</p:INVTYP>
+      <p:RIMFLG/>
+      <p:CATCH_UNTTYP/>
+      <p:CATCH_QTY>p:CATCH_QTY</p:CATCH_QTY>
+      <p:WH_ID>p:WH_ID</p:WH_ID>
+      <p:TRNDTE>p:TRNDTE</p:TRNDTE>
+      <p:VC_TOTQTY></p:VC_TOTQTY>
+    </p:INVENTORY_RECEIPT_IFD_SEG>
+  </p:CTRL_SEG>
+</p:INVENTORY_RECEIPT_IFD>

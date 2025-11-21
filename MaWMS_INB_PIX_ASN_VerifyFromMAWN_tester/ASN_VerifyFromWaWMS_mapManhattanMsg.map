@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="default" version="8.0.5.0" xmlns:map="default">
+    <input path="jar:file://!com/ibm/etools/mft/map/xsds/predefined/JsonDomainMsg.xsd" var="var2"/>
+    <input derivedFrom="MB:JSON_schema_in_json_file" path="/PIX_ASN_verify.schema.json" var="var"/>
+    <input path="/LocalVariables.xsd" var="var4"/>
+    <input derivedFrom="MB:JSON_schema_in_json_file" path="/poLines.schema.json" var="var5"/>
+    <input derivedFrom="MB:JSON_schema_in_json_file" path="/RHC_RLC_message.schema.json" var="var6"/>
+    <input derivedFrom="MB:JSON_schema_in_json_file" path="/poQty.schema.json" var="var7"/>
+    <input derivedFrom="MB:JSON_schema_in_json_file" path="/poCatchWgt.schema.json" var="var8"/>
+    <input derivedFrom="MB:JSON_schema_in_json_file" path="/poUom.schema.json" var="var9"/>
+    <output path="jar:file://!com/ibm/etools/mft/map/xsds/predefined/JsonDomainMsg.xsd" var="var3"/>
+    <output derivedFrom="MB:JSON_schema_in_json_file" path="/PIX_ASN_verify.schema.json" var="var1"/>
+    <imports>
+        <import kind="java" location="Convert" namespace="xalan://Convert"/>
+    </imports>
+    <namespaces>
+        <namespace kind="supplement" prefix="io" uri="http://www.ibm.com/iib/msl/json"/>
+        <namespace kind="extension" prefix="Convert" uri="xalan://Convert"/>
+        <namespace kind="extension" prefix="fn" uri="http://www.w3.org/2005/xpath-functions"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="ASN_VerifyFromWaWMS_mapManhattanMsg">
+        <input namespace="http://www.ibm.com/iib/msl/json" path="$var2/mb:msg(JSON,assembly,JSON,Properties,MQMD)" var="MessageAssembly">
+            <cast derivedFrom="MB:JSON_TYPE" path="$MessageAssembly/JSON/Data/type('anyType')" qualifier="{http://www.ibm.com/iib/msl/json}PIX_ASN_verify.schema_JsonType" ref="var"/>
+        </input>
+        <output namespace="http://www.ibm.com/iib/msl/json" path="$var3/mb:msg(JSON,assembly,JSON,LocalEnvironment,Properties,MQMD)" var="MessageAssembly1">
+            <cast derivedFrom="MB:JSON_TYPE" path="$MessageAssembly1/JSON/Data/type('anyType')" qualifier="{http://www.ibm.com/iib/msl/json}PIX_ASN_verify.schema_JsonType" ref="var1"/>
+            <cast path="$MessageAssembly1/LocalEnvironment/Variables/any" qualifier="asnIdFclty" ref="var4"/>
+            <cast path="$MessageAssembly1/LocalEnvironment/Variables/any" qualifier="asnIdWhse" ref="var4"/>
+            <cast path="$MessageAssembly1/LocalEnvironment/Variables/any" qualifier="asnIdPoNbr" ref="var4"/>
+            <cast path="$MessageAssembly1/LocalEnvironment/Variables/any" qualifier="asnID" ref="var4"/>
+            <cast derivedFrom="MB:JSON_schema_in_json_file" path="$MessageAssembly1/LocalEnvironment/Variables/any" qualifier="{http://www.ibm.com/iib/msl/json}poLines.schema" ref="var5"/>
+            <cast derivedFrom="MB:JSON_schema_in_json_file" path="$MessageAssembly1/LocalEnvironment/Variables/any" qualifier="{http://www.ibm.com/iib/msl/json}RHC_RLC_message.schema" ref="var6"/>
+            <cast derivedFrom="MB:JSON_schema_in_json_file" path="$MessageAssembly1/LocalEnvironment/Variables/any" qualifier="{http://www.ibm.com/iib/msl/json}poQty.schema" ref="var7"/>
+            <cast derivedFrom="MB:JSON_schema_in_json_file" path="$MessageAssembly1/LocalEnvironment/Variables/any" qualifier="{http://www.ibm.com/iib/msl/json}poCatchWgt.schema" ref="var8"/>
+            <cast derivedFrom="MB:JSON_schema_in_json_file" path="$MessageAssembly1/LocalEnvironment/Variables/any" qualifier="{http://www.ibm.com/iib/msl/json}poUom.schema" ref="var9"/>
+        </output>
+        <move>
+            <input path="$MessageAssembly/Properties"/>
+            <output path="$MessageAssembly1/Properties"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/JSON"/>
+            <output path="$MessageAssembly1/JSON"/>
+        </move>
+        <expression>
+            <input path="$MessageAssembly/JSON/spath('Data',2)/ExportDocuments/Item[1]/PIXFields/AsnId" var="AsnId"/>
+            <output path="$MessageAssembly1/LocalEnvironment/Variables/asnIdFclty"/>
+            <code lang="xpath">fn:substring( $AsnId,1 ,2 )</code>
+        </expression>
+        <expression>
+            <input path="$MessageAssembly/JSON/spath('Data',2)/ExportDocuments/Item[1]/PIXFields/AsnId" var="AsnId1"/>
+            <output path="$MessageAssembly1/LocalEnvironment/Variables/asnIdWhse"/>
+            <code lang="xpath">fn:substring( $AsnId1,3 ,2 )</code>
+        </expression>
+        <expression>
+            <input path="$MessageAssembly/JSON/spath('Data',2)/ExportDocuments/Item[1]/PIXFields/AsnId" var="AsnId2"/>
+            <output path="$MessageAssembly1/LocalEnvironment/Variables/asnIdPoNbr"/>
+            <code lang="xpath">fn:substring( $AsnId2,5 ,5 )</code>
+        </expression>
+        <expression>
+            <input path="$MessageAssembly/JSON/spath('Data',2)/ExportDocuments/Item[1]/PIXFields/AsnId" var="AsnId3"/>
+            <output path="$MessageAssembly1/LocalEnvironment/Variables/asnID"/>
+            <code lang="xpath">fn:substring( $AsnId3,1 ,9 )</code>
+        </expression>
+        <move>
+            <input path="$MessageAssembly/MQMD"/>
+            <output path="$MessageAssembly1/MQMD"/>
+        </move>
+        <foreach>
+            <input path="$MessageAssembly/JSON/spath('Data',2)/ExportDocuments/Item" var="Item"/>
+            <output path="$MessageAssembly1/LocalEnvironment/Variables/poLines.schema/poLines/Item"/>
+            <filter lang="xpath">fn:contains( $Item/PIXSpecification,'ITEM_Level' )</filter>
+            <move>
+                <input path="$Item/PIXFields/AsnSequenceNumber" var="AsnSequenceNumber"/>
+                <output path="."/>
+            </move>
+        </foreach>
+        <foreach>
+            <input path="$MessageAssembly/JSON/spath('Data',2)/ExportDocuments/Item" var="Item2"/>
+            <input auxiliary="true" path="$MessageAssembly/JSON/spath('Data',2)/ExportDocuments/Item/InventoryAttributes" var="InventoryAttributes"/>
+            <output path="$MessageAssembly1/LocalEnvironment/Variables/RHC_RLC_message.schema/RHC/RLC/Item"/>
+            <test lang="xpath">fn:contains($Item2/PIXSpecification , 'ITEM_Level')</test>
+            <assign value="AWG">
+                <output path="Owner"/>
+            </assign>
+            <expression>
+                <input path="$Item2/PIXFields/AsnId" var="AsnId4"/>
+                <output path="PoIdent"/>
+                <code lang="xpath">fn:substring($AsnId4 ,1,9 )</code>
+            </expression>
+            <move>
+                <input path="$Item2/PIXFields/AsnSequenceNumber"/>
+                <output path="PoLineIdent"/>
+            </move>
+            <move>
+                <input path="$Item2/ItemDefinition/ItemId"/>
+                <output path="ProdIdent"/>
+            </move>
+            <condition>
+                <if>
+                    <input path="$Item2/PIXFields/UnitsReceived" var="UnitsReceived"/>
+                    <output path="QtyHost"/>
+                    <test lang="xpath">fn:exists( $UnitsReceived)</test>
+                    <customFunction lang="java" ref="Convert:convertFromDoubleToInteger">
+                        <input path="$UnitsReceived/." var="UnitsReceived"/>
+                        <output path="."/>
+                        <param name="value" value="$UnitsReceived"/>
+                    </customFunction>
+                </if>
+                <else>
+                    <output path="QtyHost"/>
+                    <assign value="NoManhattanDataUsePoQty">
+                        <output path="."/>
+                    </assign>
+                </else>
+            </condition>
+        </foreach>
+        <foreach>
+            <input path="$MessageAssembly/JSON/spath('Data',2)/ExportDocuments/Item" var="Item1"/>
+            <output path="$MessageAssembly1/LocalEnvironment/Variables/poQty.schema/poQty/Item"/>
+            <filter lang="xpath">fn:contains($Item1/PIXSpecification , 'ITEM_Level')</filter>
+            <condition>
+                <if>
+                    <input path="$Item1/PIXFields/UnitsReceived" var="UnitsReceived1"/>
+                    <input path="$Item1/PIXFields/AsnSequenceNumber" var="AsnSequenceNumber1"/>
+                    <output path="."/>
+                    <test lang="xpath">fn:exists($UnitsReceived1 )</test>
+                    <customFunction lang="java" ref="Convert:concatPoQty">
+                        <input path="$UnitsReceived1/." var="UnitsReceived3"/>
+                        <input path="$AsnSequenceNumber1/." var="AsnSequenceNumber4"/>
+                        <output path="."/>
+                        <param name="poLine" value="$AsnSequenceNumber4"/>
+                        <param name="qty" value="$UnitsReceived3"/>
+                    </customFunction>
+                </if>
+                <else>
+                    <input path="$Item1/PIXFields/AsnSequenceNumber"/>
+                    <output path="."/>
+                    <function ref="fn:concat">
+                        <input path="." var="AsnSequenceNumber3"/>
+                        <output path="."/>
+                        <param name="string1" value="$AsnSequenceNumber3"/>
+                        <param name="string2" value="'|'"/>
+                        <param name="string3" value="'NoManhattanDataUsePoQty'"/>
+                    </function>
+                </else>
+            </condition>
+        </foreach>
+        <foreach>
+            <input path="$MessageAssembly/JSON/spath('Data',2)/ExportDocuments/Item" var="Item3"/>
+            <output path="$MessageAssembly1/LocalEnvironment/Variables/RHC_RLC_message.schema/RHC/DeliveryDate"/>
+            <filter lang="xpath">fn:contains($Item3/PIXSpecification , 'ASN_Level')</filter>
+            <customFunction lang="java" ref="Convert:convertToLocalTime">
+                <input path="$Item3/PIXFields/TransactionDateTime" var="TransactionDateTime"/>
+                <output path="."/>
+                <param name="dateString" value="$TransactionDateTime"/>
+            </customFunction>
+        </foreach>
+        <foreach>
+            <input path="$MessageAssembly/JSON/spath('Data',2)/ExportDocuments/Item" var="Item4"/>
+            <output path="$MessageAssembly1/LocalEnvironment/Variables/poCatchWgt.schema/poCatchWgt/Item"/>
+            <filter lang="xpath">fn:contains($Item4/PIXSpecification,'ITEM_Level')</filter>
+            <foreach>
+                <input path="$Item4/InventoryAttributes/Item" var="Item5"/>
+                <input auxiliary="true" path="$Item4/PIXFields/AsnSequenceNumber" var="AsnSequenceNumber5"/>
+                <output path="."/>
+                <if>
+                    <input path="$Item5/AttributeName" var="AttributeName2"/>
+                    <input path="$Item5/AttributeValue" var="AttributeValue2"/>
+                    <input path="$AsnSequenceNumber5/." var="AsnSequenceNumber8"/>
+                    <output path="."/>
+                    <test lang="xpath">fn:contains($AttributeName2,'CATCH_WEIGHT')</test>
+                    <function ref="fn:concat">
+                        <input path="$AttributeValue2/." var="AttributeValue4"/>
+                        <input path="$AsnSequenceNumber8/." var="AsnSequenceNumber11"/>
+                        <output path="."/>
+                        <param name="string1" value="$AsnSequenceNumber11"/>
+                        <param name="string2" value="'|'"/>
+                        <param name="string3" value="$AttributeValue4"/>
+                        <test lang="xpath">fn:exists($AttributeValue4)</test>
+                    </function>
+                </if>
+            </foreach>
+        </foreach>
+        <foreach>
+            <input path="$MessageAssembly/JSON/spath('Data',2)/ExportDocuments/Item" var="Item8"/>
+            <output path="$MessageAssembly1/LocalEnvironment/Variables/poUom.schema/poUom/Item"/>
+            <filter lang="xpath">fn:contains($Item8/PIXSpecification,'ITEM_Level')</filter>
+            <foreach>
+                <input path="$Item8/InventoryAttributes/Item" var="Item9"/>
+                <input auxiliary="true" path="$Item8/PIXFields/AsnSequenceNumber" var="AsnSequenceNumber12"/>
+                <output path="."/>
+                <function ref="fn:concat">
+                    <input path="$Item9/AttributeUom" var="AttributeUom1"/>
+                    <input path="$AsnSequenceNumber12/." var="AsnSequenceNumber13"/>
+                    <output path="."/>
+                    <param name="string1" value="$AsnSequenceNumber13"/>
+                    <param name="string2" value="'|'"/>
+                    <param name="string3" value="$AttributeUom1"/>
+                    <test lang="xpath">fn:exists($AttributeUom1)</test>
+                </function>
+            </foreach>
+        </foreach>
+    </mappingDeclaration>
+</mappingRoot>

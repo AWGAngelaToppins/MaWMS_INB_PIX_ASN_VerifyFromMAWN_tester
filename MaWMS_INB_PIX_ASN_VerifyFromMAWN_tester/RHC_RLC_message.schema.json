@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "header": {
+      "type": "object",
+      "properties": {
+        "messageId": {
+          "type": "string"
+        },
+        "messageTimestamp": {
+          "type": "string"
+        },
+        "FCLTY_CD": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "messageId",
+        "messageTimestamp",
+        "FCLTY_CD"
+      ]
+    },
+    "RHC": {
+      "type": "object",
+      "properties": {
+        "Owner": {
+          "type": "string"
+        },
+        "PoIdent": {
+          "type": "string"
+        },
+        "DeliveryDate": {
+          "type": "string"
+        },
+        "RLC": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "Owner": {
+                "type": "string"
+              },
+              "PoIdent": {
+                "type": "string"
+              },
+              "PoLineIdent": {
+                "type": "string"
+              },
+              "ProdIdent": {
+                "type": "string"
+              },
+              "UM": {
+                "type": "string"
+              },
+              "Orderkey": {
+                "type": "string"
+              },
+              "QtyHost": {
+                "type": "string"
+              },
+              "Qstate": {
+                "type": "integer"
+              },
+              "BatchNo": {
+                "type": "string"
+              },
+              "zzTotalCatchWeight": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "Owner",
+              "PoIdent",
+              "PoLineIdent",
+              "ProdIdent",
+              "UM",
+              "Orderkey",
+              "QtyHost",
+              "Qstate",
+              "BatchNo",
+              "zzTotalCatchWeight"
+            ]
+          }
+        }
+      },
+      "required": [
+        "Owner",
+        "PoIdent",
+        "DeliveryDate",
+        "RLC"
+      ]
+    }
+  },
+  "required": [
+    "header",
+    "RHC"
+  ]
+}

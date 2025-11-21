@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="default" version="8.0.5.0" xmlns:map="default">
+    <input path="jar:file://!com/ibm/etools/mft/map/xsds/predefined/JsonDomainMsg.xsd" var="var1"/>
+    <input derivedFrom="MB:JSON_schema_in_json_file" path="/PIX_ASN_verify.schema.json" var="var"/>
+    <input path="/LocalVariables.xsd" var="var4"/>
+    <input derivedFrom="MB:JSON_schema_in_json_file" path="/poLines.schema.json" var="var5"/>
+    <input derivedFrom="MB:JSON_schema_in_json_file" path="/RHC_RLC_message.schema.json" var="var6"/>
+    <input path="db:database(/Physical Data Model.dbm,scm,db:schema-tables(DB2PDBA,SCPV_POL))" var="scm1"/>
+    <input derivedFrom="MB:JSON_schema_in_json_file" path="/poQty.schema.json" var="var7"/>
+    <input derivedFrom="MB:JSON_schema_in_json_file" path="/poCatchWgt.schema.json" var="var8"/>
+    <input derivedFrom="MB:JSON_schema_in_json_file" path="/poUom.schema.json" var="var9"/>
+    <input derivedFrom="MB:JSON_schema_in_json_file" path="/poTransDateTime.schema.json" var="var10"/>
+    <output path="jar:file://!com/ibm/etools/mft/map/xsds/predefined/JsonDomainMsg.xsd" var="var3"/>
+    <output derivedFrom="MB:JSON_schema_in_json_file" path="/RHC_RLC_message.schema.json" var="var2"/>
+    <namespaces>
+        <namespace kind="supplement" prefix="io" uri="http://www.ibm.com/iib/msl/json"/>
+        <namespace kind="extension" prefix="fn" uri="http://www.w3.org/2005/xpath-functions"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="ASN_VerifyFromWaWMS_mapAwgPoLines">
+        <input namespace="http://www.ibm.com/iib/msl/json" path="$var1/mb:msg(JSON,assembly,JSON,LocalEnvironment,Properties,MQMD)" var="MessageAssembly">
+            <cast derivedFrom="MB:JSON_TYPE" path="$MessageAssembly/JSON/Data/type('anyType')" qualifier="{http://www.ibm.com/iib/msl/json}PIX_ASN_verify.schema_JsonType" ref="var"/>
+            <cast path="$MessageAssembly/LocalEnvironment/Variables/any" qualifier="asnIdFclty" ref="var4"/>
+            <cast path="$MessageAssembly/LocalEnvironment/Variables/any" qualifier="asnIdWhse" ref="var4"/>
+            <cast path="$MessageAssembly/LocalEnvironment/Variables/any" qualifier="asnIdPoNbr" ref="var4"/>
+            <cast path="$MessageAssembly/LocalEnvironment/Variables/any" qualifier="asnID" ref="var4"/>
+            <cast derivedFrom="MB:JSON_schema_in_json_file" path="$MessageAssembly/LocalEnvironment/Variables/any" qualifier="{http://www.ibm.com/iib/msl/json}poLines.schema" ref="var5"/>
+            <cast derivedFrom="MB:JSON_schema_in_json_file" path="$MessageAssembly/LocalEnvironment/Variables/any" qualifier="{http://www.ibm.com/iib/msl/json}RHC_RLC_message.schema" ref="var6"/>
+            <cast derivedFrom="MB:JSON_schema_in_json_file" path="$MessageAssembly/LocalEnvironment/Variables/any" qualifier="{http://www.ibm.com/iib/msl/json}poQty.schema" ref="var7"/>
+            <cast derivedFrom="MB:JSON_schema_in_json_file" path="$MessageAssembly/LocalEnvironment/Variables/any" qualifier="{http://www.ibm.com/iib/msl/json}poCatchWgt.schema" ref="var8"/>
+            <cast derivedFrom="MB:JSON_schema_in_json_file" path="$MessageAssembly/LocalEnvironment/Variables/any" qualifier="{http://www.ibm.com/iib/msl/json}poUom.schema" ref="var9"/>
+        </input>
+        <input path="$scm1/db:select(fn:false(),ResultSet(DB2PDBA/SCPV_POL/POL_CPY_CD,DB2PDBA/SCPV_POL/POL_PO_FACL,DB2PDBA/SCPV_POL/POL_PO_WHSE,DB2PDBA/SCPV_POL/POL_PONO,DB2PDBA/SCPV_POL/POL_POLN,DB2PDBA/SCPV_POL/POL_ITEM,DB2PDBA/SCPV_POL/POL_RCDT,DB2PDBA/SCPV_POL/POL_POQT,DB2PDBA/SCPV_POL/POL_ORIG_QTY,DB2PDBA/SCPV_POL/POL_RECQ),db:where(&quot;DB2PDBA.SCPV_POL.POL_CPY_CD = 'AWG'  AND DB2PDBA.SCPV_POL.POL_PO_FACL =  ? AND DB2PDBA.SCPV_POL.POL_PO_WHSE =  ?1 AND DB2PDBA.SCPV_POL.POL_PONO =  ?2&quot;,'?1'=$MessageAssembly/LocalEnvironment/Variables//asnIdWhse,'?2'=$MessageAssembly/LocalEnvironment/Variables//asnIdPoNbr,'?'=$MessageAssembly/LocalEnvironment/Variables//asnIdFclty))" var="dbselect1"/>
+        <output namespace="http://www.ibm.com/iib/msl/json" path="$var3/mb:msg(JSON,assembly,JSON,LocalEnvironment,Properties,MQMD)" var="MessageAssembly1">
+            <cast derivedFrom="MB:JSON_TYPE" path="$MessageAssembly1/JSON/Data/type('anyType')" qualifier="{http://www.ibm.com/iib/msl/json}RHC_RLC_message.schema_JsonType" ref="var2"/>
+            <cast path="$MessageAssembly1/LocalEnvironment/Variables/any" qualifier="asnIdFclty" ref="var4"/>
+            <cast path="$MessageAssembly1/LocalEnvironment/Variables/any" qualifier="asnIdWhse" ref="var4"/>
+            <cast path="$MessageAssembly1/LocalEnvironment/Variables/any" qualifier="asnIdPoNbr" ref="var4"/>
+            <cast path="$MessageAssembly1/LocalEnvironment/Variables/any" qualifier="asnID" ref="var4"/>
+            <cast derivedFrom="MB:JSON_schema_in_json_file" path="$MessageAssembly1/LocalEnvironment/Variables/any" qualifier="{http://www.ibm.com/iib/msl/json}poLines.schema" ref="var5"/>
+            <cast derivedFrom="MB:JSON_schema_in_json_file" path="$MessageAssembly1/LocalEnvironment/Variables/any" qualifier="{http://www.ibm.com/iib/msl/json}RHC_RLC_message.schema" ref="var2"/>
+            <cast derivedFrom="MB:JSON_schema_in_json_file" path="$MessageAssembly1/LocalEnvironment/Variables/any" qualifier="{http://www.ibm.com/iib/msl/json}poQty.schema" ref="var7"/>
+            <cast derivedFrom="MB:JSON_schema_in_json_file" path="$MessageAssembly1/LocalEnvironment/Variables/any" qualifier="{http://www.ibm.com/iib/msl/json}poCatchWgt.schema" ref="var8"/>
+            <cast derivedFrom="MB:JSON_schema_in_json_file" path="$MessageAssembly1/LocalEnvironment/Variables/any" qualifier="{http://www.ibm.com/iib/msl/json}poUom.schema" ref="var9"/>
+            <cast derivedFrom="MB:JSON_schema_in_json_file" path="$MessageAssembly1/LocalEnvironment/Variables/any" qualifier="{http://www.ibm.com/iib/msl/json}poTransDateTime.schema" ref="var10"/>
+        </output>
+        <move>
+            <input path="$MessageAssembly/LocalEnvironment/Variables"/>
+            <output path="$MessageAssembly1/LocalEnvironment/Variables"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/Properties"/>
+            <output path="$MessageAssembly1/Properties"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/MQMD"/>
+            <output path="$MessageAssembly1/MQMD"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/LocalEnvironment/Variables/asnIdFclty[1]"/>
+            <output path="$MessageAssembly1/JSON/spath('Data',2)/header/FCLTY_CD"/>
+        </move>
+        <assign value="AWG">
+            <output path="$MessageAssembly1/JSON/spath('Data',2)/RHC/Owner"/>
+        </assign>
+        <move>
+            <input path="$MessageAssembly/LocalEnvironment/Variables/asnID[1]"/>
+            <output path="$MessageAssembly1/JSON/spath('Data',2)/RHC/PoIdent"/>
+        </move>
+        <select ref="dbselect1">
+            <input path="$dbselect1/ResultSet" var="ResultSet"/>
+            <input path="$MessageAssembly/LocalEnvironment/Variables/asnID" var="asnID"/>
+            <output path="$MessageAssembly1/JSON/spath('Data',2)/RHC/RLC/Item"/>
+            <foreach>
+                <input path="$ResultSet/." var="ResultSet1"/>
+                <input auxiliary="true" path="$asnID/." var="asnID1"/>
+                <output path="."/>
+                <move>
+                    <input path="$asnID1/." var="asnID1"/>
+                    <output path="PoIdent"/>
+                </move>
+                <move>
+                    <input path="$ResultSet1/DB2PDBA/SCPV_POL/POL_ITEM"/>
+                    <output path="ProdIdent"/>
+                </move>
+                <move>
+                    <input path="$ResultSet1/DB2PDBA/SCPV_POL/POL_POLN"/>
+                    <output path="PoLineIdent"/>
+                </move>
+                <assign value="CS">
+                    <output path="UM"/>
+                </assign>
+                <assign value=" ">
+                    <output path="Orderkey"/>
+                </assign>
+                <move>
+                    <input path="$ResultSet1/DB2PDBA/SCPV_POL/POL_POQT"/>
+                    <output path="QtyHost"/>
+                </move>
+                <assign value="0">
+                    <output path="Qstate"/>
+                </assign>
+                <assign value=" ">
+                    <output path="BatchNo"/>
+                </assign>
+                <assign value="0">
+                    <output path="zzTotalCatchWeight"/>
+                </assign>
+                <move>
+                    <input path="$ResultSet1/DB2PDBA/SCPV_POL/POL_CPY_CD"/>
+                    <output path="Owner"/>
+                </move>
+            </foreach>
+        </select>
+        <move>
+            <input path="$MessageAssembly/LocalEnvironment/Variables/RHC_RLC_message.schema[1]/RHC/DeliveryDate"/>
+            <output path="$MessageAssembly1/JSON/spath('Data',2)/RHC/DeliveryDate"/>
+        </move>
+        <assign value="AWG VIEW">
+            <output path="$MessageAssembly1/JSON/spath('Data',2)/header/messageId"/>
+        </assign>
+    </mappingDeclaration>
+</mappingRoot>
